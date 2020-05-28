@@ -43,5 +43,9 @@ print(dziec)
 
 print('--------------------------------------')
 
-print(df.where(df['Plec'] == 'M').nlargest(1,'Liczba'))
-print(df.where(df['Plec'] == 'K').nlargest(1,'Liczba'))
+chl = (df.where(df['Plec'] == 'M').nlargest(1,'Liczba'))
+dzi = (df.where(df['Plec'] == 'K').nlargest(1,'Liczba'))
+chlopcy = chl[['Imie']]
+dziewczynki = dzi[['Imie']]
+print(chlopcy)
+print(dziewczynki)
