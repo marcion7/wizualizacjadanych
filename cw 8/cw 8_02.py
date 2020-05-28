@@ -29,11 +29,17 @@ print(df.groupby(df['Plec']).agg({'Liczba':['sum']}))
 
 print('--------------------------------------')
 
-grupa = df.groupby(['Rok'])
-for i in range(2000,2018):
-    print(df.where((df['Rok'] == i) & (df['Plec'] == 'M')).nlargest(1,'Liczba'))
-    print(df.where((df['Rok'] == i) & (df['Plec'] == 'K')).nlargest(1,'Liczba'))
-    i+=1
+dzieci = (df.where((df['Rok'] == 2000) & (df['Plec'] == 'M')).nlargest(1,'Liczba'))
+df2 = (df.where((df['Rok'] == 2000) & (df['Plec'] == 'K')).nlargest(1,'Liczba'))
+dzieci = pd.concat([dzieci,df2])
+for i in range(2001,2018):
+    dzieci1 = (df.where((df['Rok'] == i) & (df['Plec'] == 'M')).nlargest(1,'Liczba'))
+    dzieci = pd.concat([dzieci,dzieci1])
+    dzieci2 = (df.where((df['Rok'] == i) & (df['Plec'] == 'K')).nlargest(1,'Liczba'))
+    dzieci = pd.concat([dzieci,dzieci2])
+
+dziec = dzieci[['Rok','Imie']]
+print(dziec)
 
 print('--------------------------------------')
 
